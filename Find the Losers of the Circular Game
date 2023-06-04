@@ -1,0 +1,29 @@
+class Solution {
+    public int[] circularGameLosers(int n, int k) {
+        int[] visited = new int[n];
+        visited[0] = 1;
+        int element =0;
+        int i=1;
+        while(visited[(element + (i*k)) % n] == 0){
+            visited[(element + (i*k)) % n] = 1;
+            element = (element + (i*k)) % n;
+            i++;
+        }
+        
+        int count =0;
+        for(int c=0; c<n; c++){
+            if(visited[c] == 0){
+                count++;
+            }
+        }
+        int[] ans = new int[count];
+        int index = 0;
+                for(int j=0; j<n; j++){
+                    if(visited[j] == 0){
+                        ans[index] = j+1;
+                        index++;
+                    }
+                }
+        return ans;
+    }
+}
